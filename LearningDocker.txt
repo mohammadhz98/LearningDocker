@@ -1,0 +1,85 @@
+################################################################################################
+											Info
+################################################################################################
+Docker		=>	an engine that ...
+Image		=>	a binary file that contains all thing to run a container
+Container	=>	an isolated instance of an image
+DockerHub	=>	a hub contains many images from all around world
+
+
+################################################################################################
+											Commands
+################################################################################################
+###=> --help anywhere show the help <=###
+docker --help									
+
+###=> download an image from docker hub <=###
+docker pull [ImageName]							
+docker pull	hello-world
+
+###=> run an image from system or pull it first <=###
+docker run [ImageName]							
+docker run	hello-world
+
+###=> show all installed images on system <=###
+docker images 									
+
+###=> show running processes <=###
+docker ps										
+
+###=> show running processes + previous processes <=###
+docker ps -a									
+
+###=> run a command in a new container <=###
+docker run [ImageName] [Command]				
+docker run busybox echo "hello-world"			
+
+###=> run a command in a running container <=###
+docker exec [ContainerId] [Command]				
+docker exec 67654760259e echo "hello-world"
+
+###=> remove a container <=###
+docker rm [ContainerId]							
+docker rm 67654760259e
+
+###=> remove an image <=###
+docker rmi [ImageName]							
+docker rmi hello-world
+
+###=> remove all exited container <=###
+docker container prune							
+
+###=> remove the container when it exits <=###
+docker run --rm [ImageName]						
+
+###=> interactive keep STDIN open <=###
+docker run -i [ImageName]						
+
+###=> tty - allocate a pseudo-TTY <=###
+docker run -t [ImageName]						
+
+###=> Assign a name to the container <=###
+docker run --name [name] [ImageName]			
+docker run --name redis redis
+
+###=> run busybox and then you can execute busybox commands <=###
+docker run [Flags] [ImageName]
+docker run --rm -it busybox						
+
+###=> Publish/connect a container's port(s) to the host port <=###
+docker run -p[port]:[port] [ImageName]			
+docker run -p6379:6379 redis
+
+###=> connect to a container bash <=###
+docker exec -it [ContainerId] bash				
+docker exec 67654760259e bash
+
+###=> Bind mount a volume <=###
+docker run -p[port]:[port] -v [DirPathInHost]:[DirPathInContainer] redis redis-server --appendonly yes											
+docker run -p6379:6379 -v /tmp/data/redis:/data redis redis-server --appendonly yes
+
+
+
+
+
+================================================================
